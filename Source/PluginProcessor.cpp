@@ -22,7 +22,7 @@ BaoGainAudioProcessor::BaoGainAudioProcessor()
                        )
 #endif
 {
-    addParameter(gain = new juce::AudioParameterFloat("gain", "Gain", 0.0f, 1.0f, 0.5f));
+    addParameter(gain = new juce::AudioParameterFloat("gain", "Gain", 0.0f, (float)MAX_VALUE, 0.5f));
 }
 
 BaoGainAudioProcessor::~BaoGainAudioProcessor()
