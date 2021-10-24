@@ -18,7 +18,7 @@ BaoGainAudioProcessorEditor::BaoGainAudioProcessorEditor (BaoGainAudioProcessor&
     // editor's size to whatever you need it to be.
     setSize (400, 400);    
     addAndMakeVisible(levelSlider);
-    levelSlider.setRange(0, MAX_VALUE * 100, 1);
+    levelSlider.setRange(0, MAX_VALUE, 0.01);
     levelSlider.setSliderStyle(juce::Slider::SliderStyle::RotaryVerticalDrag);
     levelSlider.setTextBoxStyle (juce::Slider::NoTextBox, false, 90, 0);
     levelSlider.addListener(this);
@@ -60,6 +60,4 @@ void BaoGainAudioProcessorEditor::resized()
 
 void BaoGainAudioProcessorEditor::sliderValueChanged(juce::Slider* slider)
 {
-    // change the processor value
-    audioProcessor.setLevel(slider->getValue()/(100.0));
 }

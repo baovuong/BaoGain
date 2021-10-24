@@ -11,21 +11,12 @@
 
 //==============================================================================
 BaoGainAudioProcessor::BaoGainAudioProcessor()
-#ifndef JucePlugin_PreferredChannelConfigurations
-     : AudioProcessor (BusesProperties()
-                     #if ! JucePlugin_IsMidiEffect
-                      #if ! JucePlugin_IsSynth
-                       .withInput  ("Input",  juce::AudioChannelSet::stereo(), true)
-                      #endif
-                       .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
-                     #endif
-                       ),
-    parameters(*this, nullptr, juce::Identifier("BaoGain"),
+     : parameters(*this, nullptr, juce::Identifier("BaoGain"),
         {
             std::make_unique<juce::AudioParameterFloat>("gain", "Gain", 0.0f, (float)MAX_VALUE, 0.5f)
         })
-#endif
 {
+    gainParameter = parameters.getRawParameterValue("gain");
 }
 
 BaoGainAudioProcessor::~BaoGainAudioProcessor()
@@ -99,6 +90,7 @@ void BaoGainAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBloc
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    previousGain = *gainParameter;
 }
 
 void BaoGainAudioProcessor::releaseResources()
@@ -138,7 +130,16 @@ void BaoGainAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
     // juce::ScopedNoDenormals noDenormals;
     // auto totalNumInputChannels  = getTotalNumInputChannels();
     // auto totalNumOutputChannels = getTotalNumOutputChannels();
-    buffer.applyGain(*gain);
+    float currentGain = *gainParameter;
+    if (currentGain == previousGain)
+    {
+        buffer.applyGain(currentGain);
+    }
+    else 
+    {
+        buffer.applyGainRamp(0, buffer.getNumSamples(), previousGain, currentGain);
+        previousGain = currentGain;
+    }
 
     // In case we have more outputs than inputs, this code clears any output
     // channels that didn't contain input data, (because these aren't
@@ -186,11 +187,6 @@ void BaoGainAudioProcessor::setStateInformation (const void* data, int sizeInByt
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
-}
-
-void BaoGainAudioProcessor::setLevel(float level)
-{
-    *gain = level;
 }
 
 //==============================================================================
