@@ -19,10 +19,13 @@ BaoGainAudioProcessor::BaoGainAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ),
+    parameters(*this, nullptr, juce::Identifier("BaoGain"),
+        {
+            std::make_unique<juce::AudioParameterFloat>("gain", "Gain", 0.0f, (float)MAX_VALUE, 0.5f)
+        })
 #endif
 {
-    addParameter(gain = new juce::AudioParameterFloat("gain", "Gain", 0.0f, (float)MAX_VALUE, 0.5f));
 }
 
 BaoGainAudioProcessor::~BaoGainAudioProcessor()
@@ -168,7 +171,7 @@ bool BaoGainAudioProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* BaoGainAudioProcessor::createEditor()
 {
-    return new BaoGainAudioProcessorEditor (*this);
+    return new BaoGainAudioProcessorEditor (*this, parameters);
 }
 
 //==============================================================================

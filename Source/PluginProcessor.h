@@ -61,8 +61,7 @@ public:
 
 private:
     //==============================================================================
-
-    double level;
+    juce::AudioProcessorValueTreeState parameters;
     juce::AudioParameterFloat* gain;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BaoGainAudioProcessor)
 };

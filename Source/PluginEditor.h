@@ -17,7 +17,7 @@
 class BaoGainAudioProcessorEditor  : public juce::AudioProcessorEditor, juce::Slider::Listener
 {
 public:
-    BaoGainAudioProcessorEditor (BaoGainAudioProcessor&);
+    BaoGainAudioProcessorEditor (BaoGainAudioProcessor&, juce::AudioProcessorValueTreeState&);
     ~BaoGainAudioProcessorEditor() override;
 
     void sliderValueChanged(juce::Slider* slider) override;
@@ -36,6 +36,9 @@ private:
     juce::Slider levelSlider;
 
     juce::Label blurbLabel;
+
+    juce::AudioProcessorValueTreeState& valueTreeState;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> levelAttachment;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BaoGainAudioProcessorEditor)
 };

@@ -11,8 +11,8 @@
 
 
 //==============================================================================
-BaoGainAudioProcessorEditor::BaoGainAudioProcessorEditor (BaoGainAudioProcessor& p)
-    : AudioProcessorEditor (&p), audioProcessor (p)
+BaoGainAudioProcessorEditor::BaoGainAudioProcessorEditor (BaoGainAudioProcessor& p, juce::AudioProcessorValueTreeState& vts)
+    : AudioProcessorEditor (&p), audioProcessor (p), valueTreeState(vts)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
@@ -22,6 +22,7 @@ BaoGainAudioProcessorEditor::BaoGainAudioProcessorEditor (BaoGainAudioProcessor&
     levelSlider.setSliderStyle(juce::Slider::SliderStyle::RotaryVerticalDrag);
     levelSlider.setTextBoxStyle (juce::Slider::NoTextBox, false, 90, 0);
     levelSlider.addListener(this);
+    levelAttachment.reset(new juce::AudioProcessorValueTreeState::SliderAttachment(valueTreeState, "gain", levelSlider));
 
     addAndMakeVisible(levelLabel);
     levelLabel.setText("Level", juce::NotificationType::dontSendNotification);
