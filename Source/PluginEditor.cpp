@@ -16,26 +16,36 @@ BaoGainAudioProcessorEditor::BaoGainAudioProcessorEditor (BaoGainAudioProcessor&
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize (400, 400);    
+    setSize (600, 400);
     addAndMakeVisible(levelSlider);
     levelSlider.setRange(0, MAX_VALUE, 0.01);
-    levelSlider.setSliderStyle(juce::Slider::SliderStyle::RotaryVerticalDrag);
+    levelSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
     levelSlider.setTextBoxStyle (juce::Slider::NoTextBox, false, 90, 0);
-    levelSlider.addListener(this);
     levelAttachment.reset(new juce::AudioProcessorValueTreeState::SliderAttachment(valueTreeState, "gain", levelSlider));
+    levelSlider.addListener(this);
 
     addAndMakeVisible(levelLabel);
     levelLabel.setText("Level", juce::NotificationType::dontSendNotification);
     levelLabel.attachToComponent(&levelSlider, false);
     levelLabel.setJustificationType(juce::Justification::centred);
 
-    addAndMakeVisible(blurbLabel);
-    blurbLabel.setText("\"Ey This Gon Get Loud Now\"", juce::NotificationType::dontSendNotification);
+    // addAndMakeVisible(blurbLabel);
+    // blurbLabel.setText("\"Ey This Gon Get Loud Now\"", juce::NotificationType::dontSendNotification);
 
     addAndMakeVisible(versionLabel);
     versionLabel.setText(juce::String("v") + JucePlugin_VersionString, juce::NotificationType::dontSendNotification);
-    versionLabel.setJustificationType(juce::Justification::right);
+    versionLabel.setJustificationType(juce::Justification::left);
 
+
+    vince1 = juce::ImageCache::getFromMemory(BinaryData::vincemcmahon1_png, BinaryData::vincemcmahon1_pngSize);
+    vince2 = juce::ImageCache::getFromMemory(BinaryData::vincemcmahon2_png, BinaryData::vincemcmahon2_pngSize);
+    vince3 = juce::ImageCache::getFromMemory(BinaryData::vincemcmahon3_png, BinaryData::vincemcmahon3_pngSize);
+    vince4 = juce::ImageCache::getFromMemory(BinaryData::vincemcmahon4_png, BinaryData::vincemcmahon4_pngSize);
+    vince5 = juce::ImageCache::getFromMemory(BinaryData::vincemcmahon5_png, BinaryData::vincemcmahon5_pngSize);
+
+    chosenVince = std::make_unique<juce::Image>(vince1);
+
+    *chosenVince = vince1;
 }
 
 BaoGainAudioProcessorEditor::~BaoGainAudioProcessorEditor()
@@ -43,15 +53,17 @@ BaoGainAudioProcessorEditor::~BaoGainAudioProcessorEditor()
 }
 
 //==============================================================================
-void BaoGainAudioProcessorEditor::paint (juce::Graphics& g)
+void BaoGainAudioProcessorEditor::paint(juce::Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
 
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));   // clear the background
+    g.fillAll(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));   // clear the background
 
-    g.setColour (juce::Colours::black);
+    g.setColour(juce::Colours::black);
     //g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
     g.fillRect(getLocalBounds());
+
+    g.drawImageAt(*chosenVince, 71, 0);
 }
 
 void BaoGainAudioProcessorEditor::resized()
@@ -59,13 +71,40 @@ void BaoGainAudioProcessorEditor::resized()
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
 
-    levelSlider.setBounds(getWidth()/2-getWidth()/4, getHeight()/2 - getHeight()/4, getWidth()/2, getHeight()/2);
+    levelSlider.setBounds(15, 25, 50, getHeight()-55);
 
     blurbLabel.setBounds(getWidth()/2-getWidth()/4, levelSlider.getY()+levelSlider.getHeight(), getWidth()/2, 20);
 
-    versionLabel.setBounds(getWidth() - 100, getHeight() - 50, 100, 75);
+    versionLabel.setBounds(0, getHeight() - 50, 100, 75);
+
+
 }
 
 void BaoGainAudioProcessorEditor::sliderValueChanged(juce::Slider* slider)
 {
+    
+    double value = slider->getValue() / MAX_VALUE;
+    
+    if (value >= 0.8)
+    {
+        *chosenVince = vince5;
+    } 
+    else if (value >= 0.6)
+    { 
+        *chosenVince = vince4;
+    }
+    else if (value >= 0.4)
+    {
+        *chosenVince = vince3;
+    }
+    else if (value >= 0.2)
+    {
+        *chosenVince = vince2;
+    }
+    else
+    {
+        *chosenVince = vince1;
+    }
+    
+    repaint();
 }
