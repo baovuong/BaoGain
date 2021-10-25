@@ -37,6 +37,8 @@ private:
 
     juce::Label blurbLabel;
 
+    juce::Label versionLabel;
+
     juce::AudioProcessorValueTreeState& valueTreeState;
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> levelAttachment;
 

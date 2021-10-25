@@ -31,6 +31,11 @@ BaoGainAudioProcessorEditor::BaoGainAudioProcessorEditor (BaoGainAudioProcessor&
 
     addAndMakeVisible(blurbLabel);
     blurbLabel.setText("\"Ey This Gon Get Loud Now\"", juce::NotificationType::dontSendNotification);
+
+    addAndMakeVisible(versionLabel);
+    versionLabel.setText(juce::String("v") + JucePlugin_VersionString, juce::NotificationType::dontSendNotification);
+    versionLabel.setJustificationType(juce::Justification::right);
+
 }
 
 BaoGainAudioProcessorEditor::~BaoGainAudioProcessorEditor()
@@ -45,7 +50,8 @@ void BaoGainAudioProcessorEditor::paint (juce::Graphics& g)
     g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));   // clear the background
 
     g.setColour (juce::Colours::black);
-    g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
+    //g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
+    g.fillRect(getLocalBounds());
 }
 
 void BaoGainAudioProcessorEditor::resized()
@@ -56,6 +62,8 @@ void BaoGainAudioProcessorEditor::resized()
     levelSlider.setBounds(getWidth()/2-getWidth()/4, getHeight()/2 - getHeight()/4, getWidth()/2, getHeight()/2);
 
     blurbLabel.setBounds(getWidth()/2-getWidth()/4, levelSlider.getY()+levelSlider.getHeight(), getWidth()/2, 20);
+
+    versionLabel.setBounds(getWidth() - 100, getHeight() - 50, 100, 75);
 }
 
 void BaoGainAudioProcessorEditor::sliderValueChanged(juce::Slider* slider)

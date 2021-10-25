@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="euxzcD" name="BaoGain" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginManufacturer="vuongideas">
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginManufacturer="vuongideas"
+              version="0.1.0">
   <MAINGROUP id="hWm2Wi" name="BaoGain">
     <GROUP id="{166FADCE-7D83-DC2C-FBB0-E03810C3E310}" name="Source">
       <FILE id="aTsHkW" name="PluginProcessor.cpp" compile="1" resource="0"
