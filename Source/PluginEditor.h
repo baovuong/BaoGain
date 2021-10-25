@@ -49,6 +49,7 @@ private:
     juce::Image vince4;
     juce::Image vince5;
     std::unique_ptr<juce::Image> chosenVince;
+    int chosenVinceNum;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BaoGainAudioProcessorEditor)
 };

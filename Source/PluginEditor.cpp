@@ -46,6 +46,7 @@ BaoGainAudioProcessorEditor::BaoGainAudioProcessorEditor (BaoGainAudioProcessor&
     chosenVince = std::make_unique<juce::Image>(vince1);
 
     *chosenVince = vince1;
+    chosenVinceNum = 1;
 }
 
 BaoGainAudioProcessorEditor::~BaoGainAudioProcessorEditor()
@@ -84,27 +85,39 @@ void BaoGainAudioProcessorEditor::sliderValueChanged(juce::Slider* slider)
 {
     
     double value = slider->getValue() / MAX_VALUE;
+
+    int current = 1;
     
     if (value >= 0.8)
     {
         *chosenVince = vince5;
+        current = 5;
     } 
     else if (value >= 0.6)
     { 
         *chosenVince = vince4;
+        current = 4;
     }
     else if (value >= 0.4)
     {
         *chosenVince = vince3;
+        current = 3;
     }
     else if (value >= 0.2)
     {
         *chosenVince = vince2;
+        current = 2;
     }
     else
     {
         *chosenVince = vince1;
+        current = 1;
     }
     
-    repaint();
+    // don't call repaint unless it's different
+    if (current != chosenVinceNum)
+    {
+        chosenVinceNum = current;
+        repaint();
+    }
 }
