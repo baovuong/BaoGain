@@ -61,7 +61,6 @@ void BaoGainAudioProcessorEditor::paint(juce::Graphics& g)
     g.fillAll(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));   // clear the background
 
     g.setColour(juce::Colours::black);
-    //g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
     g.fillRect(getLocalBounds());
 
     g.drawImageAt(*chosenVince, 71, 0);

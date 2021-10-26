@@ -5,7 +5,7 @@
               version="0.1.1" pluginFormats="buildAU,buildAUv3,buildStandalone,buildVST3"
               pluginRTASCategory="8192" pluginAAXCategory="8192" pluginVSTCategory="kPlugCategEffect"
               pluginManufacturerCode="VngI" pluginCode="Baog" companyName="VuongIdeas"
-              displaySplashScreen="1">
+              displaySplashScreen="1" projectLineFeed="&#10;">
   <MAINGROUP id="hWm2Wi" name="BaoGain">
     <GROUP id="{166FADCE-7D83-DC2C-FBB0-E03810C3E310}" name="Source">
       <GROUP id="{301F2B92-EF6B-21CD-D278-146FE1AE608F}" name="Images">
