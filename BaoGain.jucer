@@ -8,6 +8,10 @@
               displaySplashScreen="1" projectLineFeed="&#10;">
   <MAINGROUP id="hWm2Wi" name="BaoGain">
     <GROUP id="{166FADCE-7D83-DC2C-FBB0-E03810C3E310}" name="Source">
+      <FILE id="ABLnhy" name="BaoLookAndFeel.cpp" compile="1" resource="0"
+            file="Source/BaoLookAndFeel.cpp"/>
+      <FILE id="IlVDHn" name="BaoLookAndFeel.h" compile="0" resource="0"
+            file="Source/BaoLookAndFeel.h"/>
       <GROUP id="{301F2B92-EF6B-21CD-D278-146FE1AE608F}" name="Images">
         <FILE id="AkieeP" name="vince-mcmahon-1.png" compile="0" resource="1"
               file="Source/Images/vince-mcmahon-1.png"/>

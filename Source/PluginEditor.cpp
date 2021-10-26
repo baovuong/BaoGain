@@ -18,6 +18,7 @@ BaoGainAudioProcessorEditor::BaoGainAudioProcessorEditor (BaoGainAudioProcessor&
     // editor's size to whatever you need it to be.
     setSize (600, 400);
     addAndMakeVisible(levelSlider);
+    levelSlider.setLookAndFeel(&lookAndFeel);
     levelSlider.setRange(0, MAX_VALUE, 0.01);
     levelSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
     levelSlider.setTextBoxStyle (juce::Slider::NoTextBox, false, 90, 0);
