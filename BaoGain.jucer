@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="euxzcD" name="BaoGain" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginManufacturer="vuongideas"
-              version="0.1.1" pluginFormats="buildAU,buildAUv3,buildStandalone,buildVST3"
+              version="0.1.2" pluginFormats="buildAU,buildAUv3,buildStandalone,buildVST3"
               pluginRTASCategory="8192" pluginAAXCategory="8192" pluginVSTCategory="kPlugCategEffect"
               pluginManufacturerCode="VngI" pluginCode="Baog" companyName="VuongIdeas"
               displaySplashScreen="1" projectLineFeed="&#10;">

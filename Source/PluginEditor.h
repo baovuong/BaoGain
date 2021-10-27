@@ -38,8 +38,6 @@ private:
     juce::Label levelLabel;
     juce::Slider levelSlider;
 
-    juce::Label blurbLabel;
-
     juce::Label versionLabel;
 
     juce::AudioProcessorValueTreeState& valueTreeState;
