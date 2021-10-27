@@ -16,7 +16,8 @@ class BaoLookAndFeel : public juce::LookAndFeel_V4
 {
 public:
     BaoLookAndFeel();
-    void drawLinearSlider (juce::Graphics &, 
+    void drawLinearSlider (
+        juce::Graphics &, 
         int x, 
         int y, 
         int width, 
@@ -24,6 +25,19 @@ public:
         float sliderPos, 
         float minSliderPos, 
         float maxSliderPos, 
-        const juce::Slider::SliderStyle, 
-        juce::Slider &);
+        const juce::Slider::SliderStyle sliderStyle, 
+        juce::Slider &slider);
+    
+    void drawLinearSliderThumb	(	
+        juce::Graphics &,
+        int 	x,
+        int 	y,
+        int 	width,
+        int 	height,
+        float 	sliderPos,
+        float 	minSliderPos,
+        float 	maxSliderPos,
+        const juce::Slider::SliderStyle,
+        juce::Slider & 	 
+    );	
 };
