@@ -4,8 +4,7 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginManufacturer="vuongideas"
               version="0.1.1" pluginFormats="buildAU,buildAUv3,buildStandalone,buildVST3"
               pluginRTASCategory="8192" pluginAAXCategory="8192" pluginVSTCategory="kPlugCategEffect"
-              pluginManufacturerCode="VngI" pluginCode="Baog" companyName="VuongIdeas"
-              displaySplashScreen="1">
+              pluginManufacturerCode="VngI" pluginCode="Baog" companyName="VuongIdeas">
   <MAINGROUP id="hWm2Wi" name="BaoGain">
     <GROUP id="{166FADCE-7D83-DC2C-FBB0-E03810C3E310}" name="Source">
       <GROUP id="{301F2B92-EF6B-21CD-D278-146FE1AE608F}" name="Images">
@@ -94,7 +93,7 @@
     <VS2019 targetFolder="Builds/VisualStudio2019">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" targetName="BaoGain"/>
-        <CONFIGURATION isDebug="0" name="Release" targetName="BaoGain"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="BaoGain" useRuntimeLibDLL="0"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_audio_basics" path="../../.local/apps/JUCE/modules"/>

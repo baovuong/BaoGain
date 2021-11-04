@@ -10,6 +10,7 @@
 
 #include <JuceHeader.h>
 
+// this goes to 11
 #define MAX_VALUE 11
 
 
