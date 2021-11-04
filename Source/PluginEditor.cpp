@@ -9,6 +9,8 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+#define USABLE_UI_WIDTH 71
+
 
 //==============================================================================
 BaoGainAudioProcessorEditor::BaoGainAudioProcessorEditor (BaoGainAudioProcessor& p, juce::AudioProcessorValueTreeState& vts)
@@ -18,6 +20,7 @@ BaoGainAudioProcessorEditor::BaoGainAudioProcessorEditor (BaoGainAudioProcessor&
     // editor's size to whatever you need it to be.
     setSize (600, 400);
     addAndMakeVisible(levelSlider);
+    levelSlider.setLookAndFeel(&lookAndFeel);
     levelSlider.setRange(0, MAX_VALUE, 0.01);
     levelSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
     levelSlider.setTextBoxStyle (juce::Slider::NoTextBox, false, 90, 0);
@@ -29,12 +32,9 @@ BaoGainAudioProcessorEditor::BaoGainAudioProcessorEditor (BaoGainAudioProcessor&
     levelLabel.attachToComponent(&levelSlider, false);
     levelLabel.setJustificationType(juce::Justification::centred);
 
-    // addAndMakeVisible(blurbLabel);
-    // blurbLabel.setText("\"Ey This Gon Get Loud Now\"", juce::NotificationType::dontSendNotification);
-
     addAndMakeVisible(versionLabel);
     versionLabel.setText(juce::String("v") + JucePlugin_VersionString, juce::NotificationType::dontSendNotification);
-    versionLabel.setJustificationType(juce::Justification::left);
+    versionLabel.setJustificationType(juce::Justification::centred);
 
 
     vince1 = juce::ImageCache::getFromMemory(BinaryData::vincemcmahon1_png, BinaryData::vincemcmahon1_pngSize);
@@ -61,10 +61,9 @@ void BaoGainAudioProcessorEditor::paint(juce::Graphics& g)
     g.fillAll(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));   // clear the background
 
     g.setColour(juce::Colours::black);
-    //g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
     g.fillRect(getLocalBounds());
 
-    g.drawImageAt(*chosenVince, 71, 0);
+    g.drawImageAt(*chosenVince, USABLE_UI_WIDTH, 0);
 }
 
 void BaoGainAudioProcessorEditor::resized()
@@ -72,11 +71,12 @@ void BaoGainAudioProcessorEditor::resized()
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
 
-    levelSlider.setBounds(15, 25, 50, getHeight()-55);
+    int levelWidth = juce::roundToInt(USABLE_UI_WIDTH * 0.8);
+    int xoffset = (USABLE_UI_WIDTH - levelWidth)/2;
 
-    blurbLabel.setBounds(getWidth()/2-getWidth()/4, levelSlider.getY()+levelSlider.getHeight(), getWidth()/2, 20);
+    levelSlider.setBounds(xoffset, 25, levelWidth, getHeight()-55);
 
-    versionLabel.setBounds(0, getHeight() - 50, 100, 75);
+    versionLabel.setBounds(0, getHeight() - 50, USABLE_UI_WIDTH, 75);
 
 
 }

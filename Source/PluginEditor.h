@@ -10,6 +10,7 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "BaoLookAndFeel.h"
 
 //==============================================================================
 /**
@@ -32,10 +33,10 @@ private:
     // access the processor object that created it.
     BaoGainAudioProcessor& audioProcessor;
 
+    BaoLookAndFeel lookAndFeel;
+
     juce::Label levelLabel;
     juce::Slider levelSlider;
-
-    juce::Label blurbLabel;
 
     juce::Label versionLabel;
 
